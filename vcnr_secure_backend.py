@@ -1,4 +1,5 @@
 import json
+import os
 import secrets
 import shutil
 import subprocess
@@ -18,6 +19,7 @@ from vcnr_true_core import TrueVCNRReader, check_ffmpeg, read_header
 
 ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = ROOT / "backend_config.json"
+CONFIG_ENV_VAR = "VCNR_BACKEND_CONFIG"
 STATIC_DIR = ROOT / "secure_player"
 SESSION_COOKIE = "vcnr_session"
 DEFAULT_SESSION_TTL = 3600
@@ -73,12 +75,16 @@ def _cleanup_expired_sessions() -> None:
 
 
 def _load_backend_state() -> None:
-    if not CONFIG_PATH.is_file():
+    # Try reading from environment variable first (for Render)
+    config_json = os.environ.get(CONFIG_ENV_VAR)
+    if config_json:
+        config = json.loads(config_json)
+    elif CONFIG_PATH.is_file():
+        config = _read_json(CONFIG_PATH)
+    else:
         raise RuntimeError(
-            f"Missing backend config: {CONFIG_PATH}. Copy and edit backend_config.json."
+            f"Missing backend config: Set {CONFIG_ENV_VAR} env var or {CONFIG_PATH} file."
         )
-
-    config = _read_json(CONFIG_PATH)
     session_ttl = int(config.get("session_ttl_seconds", DEFAULT_SESSION_TTL))
     playback_ttl = int(config.get("playback_ttl_seconds", DEFAULT_PLAYBACK_TTL))
 
