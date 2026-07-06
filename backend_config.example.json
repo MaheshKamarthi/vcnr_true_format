@@ -1,0 +1,21 @@
+{
+  "session_ttl_seconds": 3600,
+  "playback_ttl_seconds": 300,
+  "users": [
+    {
+      "username": "admin",
+      "password": "replace-this-password",
+      "display_name": "Administrator",
+      "videos": ["*"]
+    }
+  ],
+  "videos": [
+    {
+      "id": "movie-1",
+      "path": "videos_private/movie-1.vcnr",
+      "passcode": "server-only-vcnr-passcode",
+      "title": "Movie 1",
+      "description": "Only authorized users can stream this file."
+    }
+  ]
+}

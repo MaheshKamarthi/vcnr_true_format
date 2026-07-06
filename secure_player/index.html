@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VCNR Secure Streaming</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">VCNR Secure</p>
+      <h1>Authorized streaming player</h1>
+      <p>Users sign in, the server decrypts VCNR, and the browser receives only playable video.</p>
+    </header>
+
+    <section id="login-panel" class="panel">
+      <h2>Sign in</h2>
+      <label>
+        Username
+        <input id="username" autocomplete="username">
+      </label>
+      <label>
+        Password
+        <input id="password" type="password" autocomplete="current-password">
+      </label>
+      <div class="actions">
+        <button id="login" type="button">Sign in</button>
+      </div>
+    </section>
+
+    <section id="app-panel" class="panel hidden">
+      <div class="topbar">
+        <div>
+          <h2>Video library</h2>
+          <p id="welcome" class="muted"></p>
+        </div>
+        <button id="logout" class="secondary" type="button">Sign out</button>
+      </div>
+
+      <div class="layout">
+        <aside class="catalog">
+          <div id="video-list" class="video-list"></div>
+        </aside>
+        <section class="viewer">
+          <div class="viewer-header">
+            <h3 id="video-title">Choose a video</h3>
+            <p id="video-description" class="muted">Start a playback session from the list.</p>
+          </div>
+          <video id="player" controls playsinline></video>
+          <p id="status" class="status" role="status">Ready.</p>
+          <pre id="metadata" class="metadata"></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

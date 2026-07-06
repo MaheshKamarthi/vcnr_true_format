@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VCNR Browser Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">VCNR v3</p>
+      <h1>Protected browser player</h1>
+      <p>Decrypt and stream a VCNR video in this browser. The passcode stays on this device.</p>
+    </header>
+
+    <section class="controls">
+      <label>
+        Online VCNR URL
+        <input id="url" type="url" placeholder="https://media.example.com/movie.vcnr">
+      </label>
+      <div id="sample" class="sample hidden" aria-live="polite">
+        <div>
+          <strong>Sample file available</strong>
+          <p id="sample-label">Load a hosted sample VCNR file into the URL box.</p>
+        </div>
+        <button id="sample-load" class="secondary" type="button">Load sample file</button>
+      </div>
+      <div class="or"><span>or choose a local file</span></div>
+      <label>
+        Local VCNR file
+        <input id="file" type="file" accept=".vcnr,application/octet-stream">
+      </label>
+      <label>
+        Passcode
+        <input id="passcode" type="password" autocomplete="current-password">
+      </label>
+      <div class="buttons">
+        <button id="play" type="button">Unlock &amp; play</button>
+        <button id="stop" class="secondary" type="button">Stop</button>
+      </div>
+      <p id="status" role="status">Choose a local VCNR file, enter a hosted VCNR URL, or open a shared player link.</p>
+    </section>
+
+    <section class="screen">
+      <video id="video" controls playsinline></video>
+    </section>
+    <pre id="metadata" aria-label="VCNR metadata"></pre>
+  </main>
+  <script type="module" src="app.js?v=6"></script>
+</body>
+</html>

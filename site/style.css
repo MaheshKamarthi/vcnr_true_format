@@ -1,0 +1,69 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: #08100e;
+  color: #e9f5ef;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, #153c31, #08100e 55%); }
+main { width: min(1050px, 94vw); margin: 0 auto; padding: 42px 0 60px; }
+header { margin-bottom: 24px; }
+h1 { margin: 4px 0 8px; font-size: clamp(2rem, 5vw, 3.6rem); letter-spacing: -.04em; }
+header p { color: #adc6bc; max-width: 680px; }
+.eyebrow { color: #65e6ad; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; }
+.controls, .screen, #metadata {
+  background: rgba(12, 27, 23, .88);
+  border: 1px solid #28493f;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .25);
+}
+.controls { display: grid; gap: 14px; margin-bottom: 18px; }
+.hidden { display: none !important; }
+label { display: grid; gap: 7px; color: #cbe0d7; font-weight: 650; }
+input {
+  width: 100%;
+  border: 1px solid #385c50;
+  border-radius: 10px;
+  padding: 12px 13px;
+  background: #07110e;
+  color: #f4fff9;
+  font: inherit;
+}
+input:focus { outline: 2px solid #52d69e; border-color: transparent; }
+.sample {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid #385c50;
+  border-radius: 12px;
+  background: #0a1713;
+}
+.sample strong { display: block; margin-bottom: 4px; color: #e9f5ef; }
+.sample p { margin: 0; color: #9fc0b4; }
+.or { display: flex; align-items: center; color: #76978b; font-size: .85rem; }
+.buttons { display: flex; gap: 10px; }
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  background: #55dda5;
+  color: #062018;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+button.secondary { background: #253b34; color: #e9f5ef; }
+button:disabled { opacity: .55; cursor: wait; }
+#status { margin: 0; color: #9fc0b4; }
+#status.error { color: #ff9d9d; }
+.screen { padding: 10px; background: #020504; }
+video { display: block; width: 100%; max-height: 68vh; border-radius: 10px; background: black; }
+#metadata { margin-top: 18px; white-space: pre-wrap; color: #a9c7bc; overflow: auto; }
+@media (min-width: 760px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+  .controls label:first-child, .sample, .or, .buttons, #status { grid-column: 1 / -1; }
+}
