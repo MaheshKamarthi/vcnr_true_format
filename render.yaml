@@ -5,9 +5,13 @@ services:
     env: python
     plan: starter
     buildCommand: |
-      apt-get update && apt-get install -y ffmpeg
+      apt-get update -y
+      apt-get install -y --no-install-recommends ffmpeg
+      rm -rf /var/lib/apt/lists/*
+      pip install --upgrade pip
       pip install -r requirements.txt
-    startCommand: uvicorn vcnr_secure_backend:app --host 0.0.0.0 --port 10000
+    startCommand: uvicorn vcnr_secure_backend:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PORT
         value: 10000
+    healthCheckPath: /api/health
