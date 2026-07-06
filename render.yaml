@@ -2,15 +2,10 @@
 services:
   - type: web
     name: vcnr-secure-backend
-    env: python
+    env: docker
     plan: starter
-    buildCommand: |
-      apt-get update -y
-      apt-get install -y --no-install-recommends ffmpeg
-      rm -rf /var/lib/apt/lists/*
-      pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: uvicorn vcnr_secure_backend:app --host 0.0.0.0 --port $PORT
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: PORT
         value: 10000
